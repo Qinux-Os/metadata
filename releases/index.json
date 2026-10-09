@@ -1,0 +1,9 @@
+{
+  "$comment": "Generated from releases/*.json. Do not edit by hand. Empty until the first release is cut.",
+  "current": {
+    "stable": null,
+    "rolling": null,
+    "testing": null
+  },
+  "releases": []
+}

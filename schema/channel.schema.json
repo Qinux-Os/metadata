@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metadata.qinux-os.org/schema/channel.schema.json",
+  "title": "Qinux release channel",
+  "description": "Defines an update stream. Every file in channels/ validates against this schema.",
+  "type": "object",
+  "required": ["name", "policy", "current"],
+  "additionalProperties": false,
+  "properties": {
+    "$comment": {
+      "type": "string",
+      "description": "Note for humans and generators. Validators ignore it."
+    },
+    "name": {
+      "type": "string",
+      "enum": ["stable", "rolling", "testing"],
+      "description": "Channel identifier. Must match the filename."
+    },
+    "description": {
+      "type": "string",
+      "description": "One sentence explaining who this channel is for."
+    },
+    "policy": {
+      "type": "object",
+      "description": "When this channel accepts new builds.",
+      "required": ["frequency"],
+      "additionalProperties": false,
+      "properties": {
+        "frequency": {
+          "type": "string",
+          "enum": ["on-release", "continuous"],
+          "description": "on-release moves only at a release; continuous moves as builds land."
+        },
+        "guarantees": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Promises this channel keeps, such as installability."
+        }
+      }
+    },
+    "current": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}[.][1-9][0-9]*$",
+      "description": "Version users on this channel should be on. null means not yet published."
+    },
+    "components": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Components included in this channel. Omitted means all."
+    }
+  }
+}

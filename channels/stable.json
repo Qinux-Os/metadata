@@ -1,0 +1,13 @@
+{
+  "name": "stable",
+  "description": "Released, frozen versions. The channel almost all users should be on.",
+  "policy": {
+    "frequency": "on-release",
+    "guarantees": [
+      "Builds install cleanly from the ISO",
+      "Packages in one release are built against the same package set",
+      "Receives security fixes as point releases with the same version number"
+    ]
+  },
+  "current": null
+}

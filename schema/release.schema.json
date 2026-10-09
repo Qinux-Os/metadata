@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://metadata.qinux-os.org/schema/release.schema.json",
+  "title": "Qinux release metadata",
+  "description": "One release of Qinux. Every file in releases/ validates against this schema.",
+  "type": "object",
+  "required": ["version", "channel", "released", "kernel", "packages"],
+  "additionalProperties": false,
+  "properties": {
+    "$comment": {
+      "type": "string",
+      "description": "Note for humans and generators. Validators ignore it."
+    },
+    "version": {
+      "type": "string",
+      "description": "Calendar version, YYYY.N.",
+      "pattern": "^[0-9]{4}[.][1-9][0-9]*$",
+      "examples": ["2026.1", "2026.2"]
+    },
+    "channel": {
+      "type": "string",
+      "enum": ["stable", "rolling", "testing"],
+      "description": "Release stream this belongs to."
+    },
+    "released": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication time, UTC, ISO 8601."
+    },
+    "previous": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}[.][1-9][0-9]*$",
+      "description": "Version this supersedes, or null for the first release."
+    },
+    "kernel": {
+      "type": "string",
+      "description": "Kernel package version, including the -qinux suffix.",
+      "examples": ["6.12.1-qinux"]
+    },
+    "codename": {
+      "type": "string",
+      "description": "Optional release name. Not localised, so it must be safe in any locale."
+    },
+    "packages": {
+      "type": "object",
+      "description": "Component name to package build date. Every metapackage must appear.",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[0-9]{8}$",
+        "description": "Build date, YYYYMMDD."
+      }
+    },
+    "iso": {
+      "type": "object",
+      "description": "Checksummed ISOs for this release, keyed by profile.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["sha256", "size"],
+        "additionalProperties": false,
+        "properties": {
+          "sha256": {
+            "type": "string",
+            "pattern": "^(?:[a-f0-9]{64}|REPLACED-BY-THE-BUILD)$",
+            "description": "Lowercase hex digest. The literal REPLACED-BY-THE-BUILD is accepted only so the example file validates."
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bytes. 0 means not yet built."
+          },
+          "signatures": {
+            "type": "array",
+            "items": { "type": "string", "format": "uri" }
+          }
+        }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Human-readable release notes, in Markdown."
+    },
+    "supported": {
+      "type": "string",
+      "enum": ["yes", "no"],
+      "default": "yes",
+      "description": "Still receiving security fixes."
+    }
+  }
+}

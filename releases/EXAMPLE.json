@@ -1,0 +1,25 @@
+{
+  "$comment": "EXAMPLE ONLY. Not a real release. Copied to releases/YYYY.N.json by the release automation, with real checksums. The sha256 and size below are obviously invalid placeholders.",
+  "version": "2026.1",
+  "channel": "stable",
+  "released": "2026-03-14T12:00:00Z",
+  "previous": null,
+  "kernel": "6.12.1-qinux",
+  "codename": "First Light",
+  "packages": {
+    "qinux-base": "20260314",
+    "qinux-xorg": "20260314",
+    "qinux-desktop": "20260314",
+    "qinux-plasma": "20260314",
+    "qinux-themes": "20260314",
+    "qinux-tools": "20260314"
+  },
+  "iso": {
+    "kde": {
+      "sha256": "REPLACED-BY-THE-BUILD",
+      "size": 0
+    }
+  },
+  "notes": "Replace this with the release notes.",
+  "supported": "yes"
+}

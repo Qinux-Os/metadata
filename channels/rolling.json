@@ -1,0 +1,12 @@
+{
+  "name": "rolling",
+  "description": "Every merge to main, built automatically. For developers and early adopters.",
+  "policy": {
+    "frequency": "continuous",
+    "guarantees": [
+      "Built from a known-good commit",
+      "Installable, though not guaranteed to be bug free"
+    ]
+  },
+  "current": null
+}

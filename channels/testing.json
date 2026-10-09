@@ -1,0 +1,9 @@
+{
+  "name": "testing",
+  "description": "Changes before they reach rolling. May be broken. For contributors only.",
+  "policy": {
+    "frequency": "continuous",
+    "guarantees": []
+  },
+  "current": null
+}
